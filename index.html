@@ -92,7 +92,7 @@
 
     function init() {
       clip = new ZeroClipboard.Client();
-      clip.setMoviePath("https://raw.github.com/jonrohan/ZeroClipboard/master/ZeroClipboard.swf")
+      ZeroClipboard.setMoviePath("https://raw.github.com/jonrohan/ZeroClipboard/master/ZeroClipboard.swf")
       clip.setHandCursor( true );
 
       clip.addEventListener('load', function (client) {
