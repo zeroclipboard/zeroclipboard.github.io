@@ -38,8 +38,6 @@
 
 <p>See the <a href="https://github.com/jonrohan/ZeroClipboard/blob/master/docs/instructions.md">Instructions</a> for instructions on how to use the library on your site.</p>
 
-<p>Here is a working <a href="http://bowser.effectgames.com/%7Ejhuckaby/zeroclipboard/">Test Page</a> where you can try out ZeroClipboard in your browser.</p>
-
 <h3>Zero Clipboard Does Not Work From Local Disk</h3>
 
 <p>This is a security restriction by Adobe Flash Player. Unfortunately, since we are utilizing the <code>JavaScript-to-Flash</code> interface ("<code>ExternalInterface</code>") this only works while truly online (if the page URL starts with "http://" or "https://"). It won't work running from a local file on disk.</p>
@@ -49,12 +47,74 @@
 <p><a href="http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager04a.html">http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager04a.html</a></p>
 
 <p>And add the path to your local "ZeroClipboard.swf" file to the trusted files list, or try the "allow all" option.</p>
+
+<h3>Zero Clipboard Demo</h3>
+<p><script>document.write("Your browser: " + navigator.userAgent);</script></p>
+<table width="100%">
+    <tr>
+      <td width="50%" valign="top">
+        <!-- Upload Form -->
+        <table>
+          <tr>
+            <td align="right"><b>Text:</b></td>
+            <td align="left"><textarea id="fe_text" cols=50 rows=5 onChange="clip.setText(this.value)">Copy me!</textarea></td>
+          </tr>
+        </table>
+        <br/>
+        <div id="d_clip_container" style="position:relative">
+          <div id="d_clip_button" class="my_clip_button"><b>Copy To Clipboard...</b></div>
+        </div>
+      </td>
+      <td width="50%" valign="top">
+        <!-- Debug Console -->
+        <div id="d_debug" style="border:1px solid #aaa; padding: 10px; font-size:9pt;">
+          <h3>Debug Console:</h3>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <br/><br/>
+  You can paste text here if you want, to make sure it worked:<br/>
+  <textarea id="testarea" cols=50 rows=10></textarea><br/>
+  <input type=button value="Clear Test Area" onClick="$('testarea').value = '';"/>
       </section>
       <footer>
         <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
       </footer>
     </div>
     <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
-		
+		<script type="text/javascript" src="ZeroClipboard.js"></script>
+  <script language="JavaScript">
+    var clip = null;
+
+    function $(id) { return document.getElementById(id); }
+
+    function init() {
+      clip = new ZeroClipboard.Client();
+      clip.setHandCursor( true );
+
+      clip.addEventListener('load', function (client) {
+        debugstr("Flash movie loaded and ready.");
+      });
+
+      clip.addEventListener('mouseOver', function (client) {
+        // update the text on mouse over
+        clip.setText( $('fe_text').value );
+      });
+
+      clip.addEventListener('complete', function (client, text) {
+        debugstr("Copied text to clipboard: " + text );
+      });
+
+      clip.glue( 'd_clip_button', 'd_clip_container' );
+    }
+
+    function debugstr(msg) {
+      var p = document.createElement('p');
+      p.innerHTML = msg;
+      $('d_debug').appendChild(p);
+    }
+  </script>
   </body>
 </html>
