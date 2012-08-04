@@ -84,7 +84,7 @@
       </footer>
     </div>
     <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
-		<script type="text/javascript" src="https://raw.github.com/jonrohan/ZeroClipboard/master/ZeroClipboard.js"></script>
+		<script type="text/javascript" src="javascripts/ZeroClipboard.js"></script>
   <script language="JavaScript">
     var clip = null;
 
@@ -92,7 +92,7 @@
 
     function init() {
       clip = new ZeroClipboard.Client();
-      ZeroClipboard.setMoviePath("https://raw.github.com/jonrohan/ZeroClipboard/master/ZeroClipboard.swf")
+      ZeroClipboard.setMoviePath("javascripts/ZeroClipboard.swf")
       clip.setHandCursor( true );
 
       clip.addEventListener('load', function (client) {
