@@ -76,6 +76,7 @@
       clip = new ZeroClipboard.Client();
       ZeroClipboard.setMoviePath("javascripts/ZeroClipboard.swf")
       clip.setHandCursor( true );
+      clip.setTitle("Click me to copy to clipboard.");
 
       clip.addEventListener('load', function (client) {
         debugstr("Flash movie loaded and ready.");
