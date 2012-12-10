@@ -1,0 +1,10 @@
+{
+  "name": "zeroclipboard-test-page",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "latest",
+    "jade": "latest",
+    "request": "latest"
+  }
+}
