@@ -38,15 +38,9 @@
 
         <p>See the <a href="https://github.com/jonrohan/ZeroClipboard/blob/master/docs/instructions.md">Instructions</a> for instructions on how to use the library on your site.</p>
 
-        <h3>Zero Clipboard Does Not Work From Local Disk</h3>
+        <h3>Testing this page locally</h3>
 
-        <p>This is a security restriction by Adobe Flash Player. Unfortunately, since we are utilizing the <code>JavaScript-to-Flash</code> interface ("<code>ExternalInterface</code>") this only works while truly online (if the page URL starts with "http://" or "https://"). It won't work running from a local file on disk.</p>
-
-        <p>However, there is a way for you to edit your local Flash Player security settings and allow this. Go to this website:</p>
-
-        <p><a href="http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager04a.html">http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager04a.html</a></p>
-
-        <p>And add the path to your local "ZeroClipboard.swf" file to the trusted files list, or try the "allow all" option.</p>
+        <p>To test this page locally checkout the <code>gh-pages</code> branch and run <code>make</code>. This should open <a href="http://localhost:3000/">localhost:3000</a></p>
 
         <h3 id="demo">Zero Clipboard Demo</h3>
         <p><script>document.write("Your browser: " + navigator.userAgent);</script></p>
