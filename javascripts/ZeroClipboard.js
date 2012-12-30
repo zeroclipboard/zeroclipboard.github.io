@@ -54,7 +54,8 @@
     delete ZeroClipboard.currentElement;
   };
   ZeroClipboard.Client.prototype.ready = function() {
-    return this.htmlBridge.getAttribute("data-clipboard-ready") === "true";
+    var ready = this.htmlBridge.getAttribute("data-clipboard-ready");
+    return ready === "true" || ready === true;
   };
   function _getStyle(el, prop) {
     var y = el.style[prop];
@@ -194,8 +195,17 @@
       }
     }
   };
-  function _elementMouseOver() {
-    ZeroClipboard._client.setCurrent(this);
+  function _elementMouseOver(event) {
+    if (!event) {
+      event = window.event;
+    }
+    var target;
+    if (event.target) {
+      target = event.target;
+    } else if (event.srcElement) {
+      target = event.srcElement;
+    }
+    ZeroClipboard._client.setCurrent(target);
   }
   ZeroClipboard.Client.prototype.glue = function(query) {
     function _addEventHandler(element, method, func) {
@@ -232,7 +242,7 @@
       zIndex: 9999
     };
     var zi = _getStyle(obj, "zIndex");
-    if (zi) {
+    if (zi && zi != "auto") {
       info.zIndex = parseInt(zi, 10);
     }
     while (obj) {
