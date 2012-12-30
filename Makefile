@@ -9,7 +9,7 @@ node_modules:
 	npm install
 
 update:
-	@git checkout $(BRANCH) ZeroClipboard.min.js ZeroClipboard.swf
+	@git checkout $(BRANCH) ZeroClipboard.js ZeroClipboard.swf
 	@rm -f javascript/ZeroClipboard*
 	@mv ZeroClipboard.* javascripts/
 
