@@ -231,7 +231,7 @@
       height: obj.height ? obj.height : obj.offsetHeight,
       zIndex: 9999
     };
-    if (obj.style.zIndex) {
+    if (obj.style && obj.style.zIndex) {
       info.zIndex = parseInt(element.style.zIndex, 10);
     }
     while (obj) {
