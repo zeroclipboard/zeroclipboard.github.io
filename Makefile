@@ -10,9 +10,8 @@ node_modules:
 
 update:
 	@git checkout $(BRANCH) ZeroClipboard.js ZeroClipboard.swf
-	@rm -f javascript/ZeroClipboard* test.html
+	@rm -f javascript/ZeroClipboard*
 	@mv ZeroClipboard.* javascripts/
-	@cp ./bin/test.html test.html
 
 commit: update
 	git add .
