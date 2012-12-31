@@ -12,7 +12,7 @@ update:
 	@git checkout $(BRANCH) ZeroClipboard.js ZeroClipboard.swf
 	@rm -f javascript/ZeroClipboard* test.html
 	@mv ZeroClipboard.* javascripts/
-	@mv t.html test.html
+	@cp t.html test.html
 
 commit: update
 	git add .
