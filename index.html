@@ -7,21 +7,20 @@
     <meta name="description" content="Copy to clipboard html browser.">
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="javascripts/scale.fix.js"></script>
-    <script src="javascripts/jquery.js"></script>
+    <script type="text/javascript" src="javascripts/scale.fix.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script type="text/javascript" src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
   </head>
   <body>
     <div class="wrapper">
       <header>
-        <h1 class="header">ZeroClipboard</h1>
-        <p class="header">The ZeroClipboard library provides an easy way to copy text to the clipboard using an invisible Adobe Flash movie, and a JavaScript interface. The &quot;Zero&quot; signifies that the library is invisible and the user interface is left entirely up to you.</p>
+        <h2 class="header">ZeroClipboard</h2>
+        <p class="header">The ZeroClipboard library provides an easy way to copy text to the clipboard using an invisible Adobe Flash movie and a JavaScript interface. The &quot;Zero&quot; signifies that the library is invisible and the user interface is left entirely up to you.</p>
 
         <ul>
-          <li class="download"><a class="buttons" href="https://github.com/zeroclipboard/ZeroClipboard/archive/v1.1.7.zip">v1.1.7 ZIP</a></li>
+          <li class="download"><a class="buttons" href="#">ZIP</a></li>
           <li><a class="buttons github" href="https://github.com/zeroclipboard/ZeroClipboard">View On GitHub</a></li>
         </ul>
 
@@ -29,7 +28,7 @@
       <section>
         <h1>ZeroClipboard</h1>
 
-        <p>The ZeroClipboard library provides an easy way to copy text to the clipboard using an invisible <a href="http://en.wikipedia.org/wiki/Adobe_Flash">Adobe Flash</a> movie, and a <a href="http://en.wikipedia.org/wiki/JavaScript">JavaScript</a> interface. The "Zero" signifies that the library is invisible and the user interface is left entirely up to you.</p>
+        <p>The ZeroClipboard library provides an easy way to copy text to the clipboard using an invisible <a href="http://en.wikipedia.org/wiki/Adobe_Flash">Adobe Flash</a> movie and a <a href="http://en.wikipedia.org/wiki/JavaScript">JavaScript</a> interface. The "Zero" signifies that the library is invisible and the user interface is left entirely up to you.</p>
 
         <p>This library is fully compatible with Flash Player 10, which requires that the clipboard copy operation be initiated by a user click event inside the Flash movie. This is achieved by automatically floating the invisible movie on top of a <a href="http://en.wikipedia.org/wiki/Document_Object_Model">DOM</a> element of your choice. Standard mouse events are even propagated out to your DOM element, so you can still have rollover and mouse down effects.</p>
 
@@ -37,74 +36,79 @@
 
         <h3>Testing this page locally</h3>
 
-        <p>To test this page locally checkout the <code>gh-pages</code> branch and run <code>make</code>. This should open <a href="http://localhost:3000/">localhost:3000</a></p>
+        <p>To test this page locally, checkout the <code>gh-pages</code> branch and run <code>make</code>. This should open <a href="http://localhost:3000/">localhost:3000</a></p>
 
-        <h3 id="demo">ZeroClipboard Demo</h3>
-        <p><script>document.write("Your browser: " + navigator.userAgent);</script></p>
-        <div class="demo-area">
-          <button id="d_clip_button" class="my_clip_button" title="Click me to copy to clipboard." data-clipboard-target="fe_text" data-clipboard-text="Default clipboard text from attribute"><b>Copy To Clipboard...</b></button>
-          <h4><label for="fe_text">Change Copy Text Here</label></h4>
-          <textarea id="fe_text"  cols="50" rows="3">Copy me!</textarea>
-          <h4><label for="testarea">Paste Text Here</label></h4>
-          <textarea id="testarea" cols="50" rows="3"></textarea>
-          <p><button id="clear-test">Clear Test Area</button></p>
+        <h3>Versions</h3>
+        <!--
+          IMPORTANT!!!
+          The version numbers listed in the following `code` blocks control the actual script and SWF version
+          targetting (see "boot.js"). This is the only place you need to change the version numbers!
+          -->
+        <ul id="versions">
+          <li class="stable"><strong>Stable:</strong> <code>v1.1.7</code></li>
+          <li class="beta"><strong>Beta:</strong> <code>v1.2.0-beta.3</code></li>
+          <li class="edge"><strong>Edge:</strong> <code>git:master</code></li>
+        </ul>
+
+        <div id="demo">
+          <label for="demo-type">Demo Type:</label>
+          <select id="demo-type">
+            <optgroup label="Stable (Released)">
+              <option value="?release=stable&type=traditional">Traditional - Stable</option>
+              <!--
+              <option value="?release=stable&type=amd">AMD - Stable</option>
+              <option value="?release=stable&type=commonjs">CommonJS - Stable</option>
+              -->
+            </optgroup>
+            <optgroup label="Beta (Pre-Release)">
+              <option value="?release=beta&type=traditional">Traditional - Beta</option>
+              <option value="?release=beta&type=amd">AMD - Beta</option>
+              <!--
+              <option value="?release=beta&type=commonjs">CommonJS - Beta</option>
+              -->
+            </optgroup>
+            <optgroup label="Edge (master/git/Alpha)">
+              <option value="?release=edge&type=traditional">Traditional - Edge</option>
+              <option value="?release=edge&type=amd">AMD - Edge</option>
+              <!--
+              <option value="?release=edge&type=commonjs">CommonJS - Edge</option>
+              -->
+            </optgroup>
+          </select>
+
+          <h3>ZeroClipboard Demo</h3>
+          <p><script type="text/javascript">document.write("Your browser: " + navigator.userAgent);</script></p>
+          <div class="demo-area">
+            <button id="d_clip_button" class="my_clip_button" title="Click me to copy to clipboard." data-clipboard-target="fe_text" data-clipboard-text="Default clipboard text from attribute"><b>Copy To Clipboard...</b></button>
+            <h4><label for="fe_text">Change Copy Text Here</label></h4>
+            <textarea id="fe_text" cols="50" rows="3">Copy me!</textarea>
+            <h4><label for="testarea">Paste Text Here</label></h4>
+            <textarea id="testarea" cols="50" rows="3"></textarea>
+            <p><button id="clear-test">Clear Test Area</button></p>
+          </div>
+          <h4>Debug Console:</h4>
+          <div id="d_debug"></div>
         </div>
-        <h4>Debug Console:</h4>
-        <div id="d_debug"></div>
       </section>
       <footer>
         <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
       </footer>
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
-  <script type="text/javascript" src="javascripts/ZeroClipboard.js"></script>
-  <script language="JavaScript">
-
-  $(document).ready(function() {
-    var clip = new ZeroClipboard($("#d_clip_button"), {
-      moviePath: "javascripts/ZeroClipboard.swf"
-    });
-
-    clip.on('load', function (client) {
-      debugstr("Flash movie loaded and ready.");
-    });
-
-    clip.on('noFlash', function (client) {
-      $(".demo-area").hide();
-      debugstr("Your browser has no Flash.");
-    });
-
-    clip.on('wrongFlash', function (client, args) {
-      $(".demo-area").hide();
-      debugstr("Flash 10.0.0+ is required but you are running Flash " + args.flashVersion.replace(/,/g, "."));
-    });
-
-    clip.on('complete', function (client, args) {
-      debugstr("Copied text to clipboard: " + args.text);
-    });
-
-    // jquery stuff (optional)
-    function debugstr(text) {
-      $("#d_debug").append($("<p>").text(text));
-    }
-
-    $("#clear-test").on("click", function(){
-      $("#fe_text").val("Copy me!");
-      $("#testarea").val("");
-    });
-  });
-
-  var _gauges = _gauges || [];
-  (function() {
-    var t   = document.createElement('script');
-    t.type  = 'text/javascript';
-    t.async = true;
-    t.id    = 'gauges-tracker';
-    t.setAttribute('data-site-id', '501d5697f5a1f502f2000057');
-    t.src = '//secure.gaug.es/track.js';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(t, s);
-  })();
-</script>
+    <!--[if !IE]><script type="text/javascript">fixScale(document);</script><!--<![endif]-->
+    <script type="text/javascript" src="javascripts/vendor/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/boot.js"></script>
+    <script type="text/javascript">
+      var _gauges = _gauges || [];
+      (function() {
+        var t   = document.createElement('script');
+        t.type  = 'text/javascript';
+        t.async = true;
+        t.id    = 'gauges-tracker';
+        t.setAttribute('data-site-id', '501d5697f5a1f502f2000057');
+        t.src = '//secure.gaug.es/track.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(t, s);
+      })();
+    </script>
   </body>
 </html>

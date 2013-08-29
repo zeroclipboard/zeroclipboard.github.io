@@ -226,17 +226,15 @@ p.header {
 	font-size: 16px;
 }
 
-h1.header {
+h2.header {
 	font-family: Arvo, sans-serif;
-	font-size: 30px;
 	font-weight: 300;
 	line-height: 1.3em;
-	border-bottom: none;
 	margin-top: 0;
 }
 
 
-h1.header, a.header, a.name, header a{
+h2.header, a.header, a.name, header a{
 	color: #fff;
 }
 
@@ -407,4 +405,10 @@ footer {
     font-size:12pt;
     color:#444;
   }
+}
+
+.warning {
+  font-weight: bold;
+  font-style: italic;
+  color: #FF0000;
 }
