@@ -32,7 +32,7 @@
 
         <p>This library is fully compatible with Flash Player 10, which requires that the clipboard copy operation be initiated by a user click event inside the Flash movie. This is achieved by automatically floating the invisible movie on top of a <a href="http://en.wikipedia.org/wiki/Document_Object_Model">DOM</a> element of your choice. Standard mouse events are even propagated out to your DOM element, so you can still have rollover and mouse down effects.</p>
 
-        <p>See the <a href="https://github.com/zeroclipboard/ZeroClipboard/blob/master/docs/instructions.md">Instructions</a> for instructions on how to use the library on your site.</p>
+        <p>See the <a href="https://github.com/zeroclipboard/zeroclipboard/blob/master/docs/instructions.md">Instructions</a> for instructions on how to use the library on your site.</p>
 
         <h3>Testing this page locally</h3>
 
@@ -42,11 +42,12 @@
         <!--
           IMPORTANT!!!
           The version numbers listed in the following `code` blocks control the actual script and SWF version
-          targetting (see "boot.js"). This is the only place you need to change the version numbers!
+          targeting (see "boot.js"). This is the only place you need to change the version numbers!
+          Double-check the `optgroup`s in the below `select` element for unwarranted `disabled` attributes.
           -->
         <ul id="versions">
-          <li class="stable"><strong>Stable:</strong> <code>v1.1.7</code></li>
-          <li class="beta"><strong>Beta:</strong> <code>v1.2.0-beta.3</code></li>
+          <li class="stable"><strong>Stable:</strong> <code>v1.2.0</code></li>
+          <li class="beta"><strong>Beta:</strong> <code>N/A</code></li>
           <li class="edge"><strong>Edge:</strong> <code>git:master</code></li>
         </ul>
 
@@ -55,24 +56,18 @@
           <select id="demo-type">
             <optgroup label="Stable (Released)">
               <option value="?release=stable&type=traditional">Traditional - Stable</option>
-              <!--
               <option value="?release=stable&type=amd">AMD - Stable</option>
-              <option value="?release=stable&type=commonjs">CommonJS - Stable</option>
-              -->
+              <option value="?release=stable&type=commonjs" disabled="disabled">CommonJS - Stable</option>
             </optgroup>
-            <optgroup label="Beta (Pre-Release)">
+            <optgroup label="Beta (Pre-Release)" disabled="disabled">
               <option value="?release=beta&type=traditional">Traditional - Beta</option>
               <option value="?release=beta&type=amd">AMD - Beta</option>
-              <!--
-              <option value="?release=beta&type=commonjs">CommonJS - Beta</option>
-              -->
+              <option value="?release=beta&type=commonjs" disabled="disabled">CommonJS - Beta</option>
             </optgroup>
             <optgroup label="Edge (master/git/Alpha)">
               <option value="?release=edge&type=traditional">Traditional - Edge</option>
               <option value="?release=edge&type=amd">AMD - Edge</option>
-              <!--
-              <option value="?release=edge&type=commonjs">CommonJS - Edge</option>
-              -->
+              <option value="?release=edge&type=commonjs" disabled="disabled">CommonJS - Edge</option>
             </optgroup>
           </select>
 
