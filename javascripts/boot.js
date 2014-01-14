@@ -11,20 +11,9 @@
     return ret;
   }
 
-  function addScript(srcUrl, previousSiblingEl) {
-    var s = document.createElement("script");
-    s.type = "text/javascript";
-    s.async = false;
-    s.defer = "defer";
-
-    var prevSib = previousSiblingEl || document.currentScript || document.getElementsByTagName('script')[0];
-    prevSib.parentNode.insertBefore(s, prevSib.nextSibling);
-
-    // Set the `src` AFTER adding the node to the DOM to avoid many IE bugs:
-    //   http://www.guypo.com/technical/ies-premature-execution-problem/
-    s.src = srcUrl;
-
-    return s;
+  function addScript(srcUrl) {
+    // Stupid IE:  http://www.guypo.com/technical/ies-premature-execution-problem/
+    document.write('<scr' + 'ipt type="text/javascript" src="' + srcUrl + '"></script>');
   }
 
 
@@ -67,14 +56,14 @@
         var zcLibSrcUrl = !loadingEdge ?
           "javascripts/zc/ZeroClipboard_" + targetVersion + ".js" :
           "//rawgithub.com/zeroclipboard/ZeroClipboard/master/ZeroClipboard.js";
-        var zcLibEl = addScript(zcLibSrcUrl);
+        addScript(zcLibSrcUrl);
 
         // Create a cross-domain configuration script block if loading "edge"
         var zcConfigSrcUrl = "javascripts/config-traditional" + (loadingEdge ? "-edge" : "") + ".js";
-        var zcConfigEl = addScript(zcConfigSrcUrl, zcLibEl);
+        addScript(zcConfigSrcUrl);
 
         // Create a script block to hook up the demo
-        var zcDemoEl = addScript("javascripts/demo-traditional.js", zcConfigEl);
+        addScript("javascripts/demo-traditional.js");
 
         break;
       }
@@ -92,10 +81,10 @@
 
         // Create a cross-domain configuration script block if loading "edge"
         var zcConfigSrcUrl = "javascripts/config-amd" + (loadingEdge ? "-edge" : "") + ".js";
-        var zcConfigEl = addScript(zcConfigSrcUrl, requirejsLibEl);
+        addScript(zcConfigSrcUrl);
 
         // Create a script block to hook up the demo
-        var zcDemoEl = addScript("javascripts/demo-amd.js", zcConfigEl);
+        addScript("javascripts/demo-amd.js");
 
         break;
       }
