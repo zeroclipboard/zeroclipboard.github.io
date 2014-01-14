@@ -10,16 +10,20 @@
     }
     return ret;
   }
-  
+
   function addScript(srcUrl, previousSiblingEl) {
     var s = document.createElement("script");
     s.type = "text/javascript";
-    s.src = srcUrl;
     s.async = false;
-    
-    var prevSib = previousSiblingEl || document.getElementsByTagName('script')[0];
+    s.defer = "defer";
+
+    var prevSib = previousSiblingEl || document.currentScript || document.getElementsByTagName('script')[0];
     prevSib.parentNode.insertBefore(s, prevSib.nextSibling);
-    
+
+    // Set the `src` AFTER adding the node to the DOM to avoid many IE bugs:
+    //   http://www.guypo.com/technical/ies-premature-execution-problem/
+    s.src = srcUrl;
+
     return s;
   }
 
@@ -54,7 +58,7 @@
   var targetVersion = $("#versions > ." + currentQuery.release + " > code").text().replace(/^v/, "");
   if (targetVersion) {
     var loadingEdge = targetVersion === "git:master";
-    
+
     switch (currentQuery.type) {
 
       case "traditional": {
