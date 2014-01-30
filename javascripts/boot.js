@@ -18,40 +18,51 @@
 
 
   // Grab the default configuration
-  var $dropdown = $("#demo-type");
-  var defaultVal = $dropdown.find("option").first().val();
-  var queryString = window.location.search || defaultVal;
-  var currentQuery = parseQuery(queryString);
+  var $demoVersionDropdown = $("#demo-version");
+  var defaultVersion = $demoVersionDropdown.find(":selected").val();
+  var $demoTypeDropdown = $("#demo-type");
+  var defaultType = $demoTypeDropdown.find(":selected").val();
+
+  // Identify the desired demo based on the current URL's query string
+  var query = parseQuery(window.location.search);
+  if (!query.version) {
+    query.version = defaultVersion;
+  }
+  if (!query.type) {
+    query.type = defaultType;
+  }
 
   // Select the correct demo type for this page load
-  $dropdown.find("option[value='" + queryString + "']").prop("selected", true);
+  $demoVersionDropdown.find("option").filter(function() { return $(this).val() === query.version; }).prop("selected", true);
+  $demoTypeDropdown.find("option[value='" + query.type + "']").prop("selected", true);
 
-  // Listen for a change in selection and refresh the page
-  $dropdown.on("change", function(evt) {
-    var selectedVal = $dropdown.val() || defaultVal;
-    var selectedValQuery = parseQuery(selectedVal);
-    if ((currentQuery.release !== selectedValQuery.release) || (currentQuery.type !== selectedValQuery.type)) {
-      window.location.href = selectedVal;
+  $("#current-demo-config").html("<code>" + query.version + "</code> &mdash; " + $demoTypeDropdown.find(":selected").text());
+
+  // Listen for a click and refresh the page
+  $("#boot").on("click", function(evt) {
+    var selectedVersion = $demoVersionDropdown.find(":selected").val() || defaultVersion;
+    var selectedType = $demoTypeDropdown.find(":selected").val() || defaultType;
+    if ((query.version !== selectedVersion) || (query.type !== selectedType)) {
+      window.location.href = "?version=" + selectedVersion + "&type=" + selectedType;
     }
   });
 
 
-  // Adjust the download link
-  var stableVersion = $("#versions > .stable > code").text();  // e.g. "v1.1.7"
+  // Adjust the stable version's download link
+  var stableVersion = defaultVersion;  // e.g. "v1.1.7"
   $(".download > a")
     .attr("href", "https://github.com/zeroclipboard/ZeroClipboard/archive/" + stableVersion + ".zip")
     .text(stableVersion + " ZIP");
 
 
   // Boot-load the actual demo code
-  var targetVersion = $("#versions > ." + currentQuery.release + " > code").text().replace(/^v/, "");
+  var targetVersion = query.version.replace(/^v/, "");
   if (targetVersion) {
     var loadingEdge = targetVersion === "git:master";
 
-    switch (currentQuery.type) {
+    switch (query.type) {
 
       case "traditional": {
-
         // Create a script block to load the ZeroClipboard library
         var zcLibSrcUrl = !loadingEdge ?
           "javascripts/zc/ZeroClipboard_" + targetVersion + ".js" :
@@ -69,7 +80,6 @@
       }
 
       case "amd": {
-
         // Create a script block to load the RequireJS AMD Loader library
         var requirejsLibEl = addScript("javascripts/vendor/require.js");
 
@@ -89,20 +99,18 @@
         break;
       }
 
-      /*
       case "commonjs": {
-        // TODO: Implement CommonJS-based demo
+        alert("There is no CommonJS demo implemented yet.");
         break;
       }
-      */
 
       default: {
-        alert("You've requested an invalid `type` for the demo: '" + currentQuery.type + "'");
+        alert("You've requested an invalid `type` for the demo: '" + query.type + "'");
         break;
       }
     }
   }
   else {
-    alert("You've requested an invalid `release` for the demo: '" + currentQuery.release + "'");
+    alert("You've requested an invalid `version` for the demo: '" + targetVersion + "'");
   }
 })();

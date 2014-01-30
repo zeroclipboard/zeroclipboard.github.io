@@ -27,57 +27,45 @@
       </header>
       <section>
         <h1>ZeroClipboard</h1>
-
-        <p>The ZeroClipboard library provides an easy way to copy text to the clipboard using an invisible <a href="http://en.wikipedia.org/wiki/Adobe_Flash">Adobe Flash</a> movie and a <a href="http://en.wikipedia.org/wiki/JavaScript">JavaScript</a> interface. The "Zero" signifies that the library is invisible and the user interface is left entirely up to you.</p>
-
-        <p>This library is fully compatible with Flash Player 10, which requires that the clipboard copy operation be initiated by a user click event inside the Flash movie. This is achieved by automatically floating the invisible movie on top of a <a href="http://en.wikipedia.org/wiki/Document_Object_Model">DOM</a> element of your choice. Standard mouse events are even propagated out to your DOM element, so you can still have rollover and mouse down effects.</p>
-
-        <p>See the <a href="https://github.com/zeroclipboard/zeroclipboard/blob/master/docs/instructions.md">Instructions</a> for instructions on how to use the library on your site.</p>
+        <div>The ZeroClipboard library provides an easy way to copy text to the clipboard using an invisible <a href="http://en.wikipedia.org/wiki/Adobe_Flash">Adobe Flash</a> movie and a <a href="http://en.wikipedia.org/wiki/JavaScript">JavaScript</a> interface. The "Zero" signifies that the library is invisible and the user interface is left entirely up to you.</div>
 
         <h3>Testing this page locally</h3>
+        <div>To test this page locally, checkout the <code>gh-pages</code> branch and run <code>make</code> to open <a href="http://localhost:3000/">localhost:3000</a></div>
 
-        <p>To test this page locally, checkout the <code>gh-pages</code> branch and run <code>make</code>. This should open <a href="http://localhost:3000/">localhost:3000</a></p>
-
-        <h3 id="demo">Versions</h3>
-        <!--
-          IMPORTANT!!!
-          The version numbers listed in the following `code` blocks control the actual script and SWF version
-          targeting (see "boot.js"). This is the only place you need to change the version numbers!
-          Double-check the `optgroup`s in the below `select` element for unwarranted `disabled` attributes.
-          -->
-        <ul id="versions">
-          <li class="stable"><strong>Stable:</strong> <code>v1.3.1</code></li>
-          <li class="beta"><strong>Beta:</strong> <code>N/A</code></li>
-          <li class="edge"><strong>Edge:</strong> <code>git:master</code></li>
-        </ul>
-
+        <h3>Demo</h3>
         <div>
-          <label for="demo-type">Demo Type:</label>
-          <select id="demo-type">
-            <optgroup label="Stable (Released)">
-              <option value="?release=stable&type=traditional">Traditional - Stable</option>
-              <option value="?release=stable&type=amd">AMD - Stable</option>
-              <option value="?release=stable&type=commonjs" disabled="disabled">CommonJS - Stable</option>
-            </optgroup>
-            <optgroup label="Beta (Pre-Release)" disabled="disabled">
-              <option value="?release=beta&type=traditional">Traditional - Beta</option>
-              <option value="?release=beta&type=amd">AMD - Beta</option>
-              <option value="?release=beta&type=commonjs" disabled="disabled">CommonJS - Beta</option>
-            </optgroup>
-            <optgroup label="Edge (master/git/Alpha)">
-              <option value="?release=edge&type=traditional">Traditional - Edge</option>
-              <option value="?release=edge&type=amd">AMD - Edge</option>
-              <option value="?release=edge&type=commonjs" disabled="disabled">CommonJS - Edge</option>
-            </optgroup>
-          </select>
-
-          <h3>ZeroClipboard Demo</h3>
-          <p><script type="text/javascript">document.write("Your browser: " + navigator.userAgent);</script></p>
+          <div><strong>Browser:</strong> <script type="text/javascript">document.write(navigator.userAgent);</script></div>
+          <div><strong>Current config:</strong> <span id="current-demo-config">???</span></div>
+          <div>
+            <strong>Choose config:</strong>
+            <!--
+              IMPORTANT!!!
+              The version numbers listed in the following `demo-version` select menu control the actual script and SWF version
+              targeting (see "boot.js"). This is the only place you need to change the version numbers!
+              Double-check that the current stable release is marked as the only `option` with the `selected` attribute.
+            -->
+            <select id="demo-version">
+              <option>git:master</option>
+              <option selected="selected">v1.3.1</option>
+              <option>v1.3.0</option>
+              <option>v1.2.3</option>
+              <option>v1.2.2</option>
+              <option>v1.2.1</option>
+              <option>v1.2.0</option>
+              <option>v1.1.7</option>
+            </select>
+            <select id="demo-type">
+              <option value="traditional" selected="selected">Traditional</option>
+              <option value="amd">AMD</option>
+              <option value="commonjs" disabled="disabled">CommonJS</option>
+            </select>
+            <button id="boot" type="button">Boot!</button>
+          </div>
           <div class="demo-area">
-            <button id="d_clip_button" class="my_clip_button" title="Click me to copy to clipboard." data-clipboard-target="fe_text" data-clipboard-text="Default clipboard text from attribute"><b>Copy To Clipboard...</b></button>
-            <h4><label for="fe_text">Change Copy Text Here</label></h4>
+            <h4><label for="fe_text">Text to Copy:</label></h4>
             <textarea id="fe_text" cols="50" rows="3">Copy me!</textarea>
-            <h4><label for="testarea">Paste Text Here</label></h4>
+            <p><button id="d_clip_button" class="my_clip_button" title="Click me to copy to clipboard." data-clipboard-target="fe_text" data-clipboard-text="Default clipboard text from attribute"><b>Copy To Clipboard...</b></button></p>
+            <h4><label for="testarea">Paste Here:</label></h4>
             <textarea id="testarea" cols="50" rows="3"></textarea>
             <p><button id="clear-test">Clear Test Area</button></p>
           </div>
