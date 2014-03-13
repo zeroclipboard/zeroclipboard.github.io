@@ -5,6 +5,8 @@ $(document).ready(function() {
   clip.on("load", function (client) {
     debugstr("Flash movie loaded and ready.");
 
+    debugstr("Configuration: " + JSON.stringify(ZeroClipboard.config()));
+
     client.on("complete", function (client, args) {
       debugstr("Copied text to clipboard: " + args.text);
     });

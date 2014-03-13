@@ -1,4 +1,6 @@
-BRANCH = "master"
+BRANCH = "gh-pages"
+VERSION = "1.3.2"
+PORT = "3000"
 
 all: \
 	node_modules \
@@ -9,9 +11,11 @@ node_modules:
 	npm install
 
 update:
-	@git checkout $(BRANCH) ZeroClipboard.js ZeroClipboard.swf
 	@rm -f javascript/ZeroClipboard*
-	@mv ZeroClipboard.* javascripts/
+	@curl -O https://raw.github.com/zeroclipboard/zeroclipboard/v$(VERSION)/ZeroClipboard.js
+	@mv ZeroClipboard.js javascripts/ZeroClipboard.js
+	@curl -O https://raw.github.com/zeroclipboard/zeroclipboard/v$(VERSION)/ZeroClipboard.swf
+	@mv ZeroClipboard.swf javascripts/ZeroClipboard.swf
 
 commit: update
 	git add .
@@ -19,6 +23,6 @@ commit: update
 	git push
 
 server: update
-	open "http://localhost:3000/" && node node_server.js
+	open "http://localhost:$(PORT)/" && node node_server.js
 
 .PHONY: all update commit server
