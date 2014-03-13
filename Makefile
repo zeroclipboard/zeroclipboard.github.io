@@ -13,8 +13,10 @@ node_modules:
 update:
 	@git checkout $(BRANCH) javascripts/zc/ZeroClipboard_$(VERSION).js javascripts/zc/ZeroClipboard_$(VERSION).swf
 	@rm -f javascript/ZeroClipboard*
-	@cp javascripts/zc/ZeroClipboard_$(VERSION).js javascripts/ZeroClipboard.js
-	@cp javascripts/zc/ZeroClipboard_$(VERSION).swf javascripts/ZeroClipboard.swf
+	@curl -O https://raw.github.com/zeroclipboard/zeroclipboard/v$(VERSION)/ZeroClipboard.js
+	@mv ZeroClipboard.js javascripts/ZeroClipboard.js
+	@curl -O https://raw.github.com/zeroclipboard/zeroclipboard/v$(VERSION)/ZeroClipboard.swf
+	@mv ZeroClipboard.swf javascripts/ZeroClipboard.swf
 
 commit: update
 	git add .
