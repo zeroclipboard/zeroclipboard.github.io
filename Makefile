@@ -11,7 +11,6 @@ node_modules:
 	npm install
 
 update:
-	@git checkout $(BRANCH) javascripts/zc/ZeroClipboard_$(VERSION).js javascripts/zc/ZeroClipboard_$(VERSION).swf
 	@rm -f javascript/ZeroClipboard*
 	@curl -O https://raw.github.com/zeroclipboard/zeroclipboard/v$(VERSION)/ZeroClipboard.js
 	@mv ZeroClipboard.js javascripts/ZeroClipboard.js
