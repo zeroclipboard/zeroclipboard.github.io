@@ -1,4 +1,5 @@
-BRANCH = "master"
+VERSION = "1.3.3"
+PORT = "3000"
 
 all: \
 	node_modules \
@@ -9,9 +10,10 @@ node_modules:
 	npm install
 
 update:
-	@git checkout $(BRANCH) ZeroClipboard.js ZeroClipboard.swf
-	@rm -f javascript/ZeroClipboard*
-	@mv ZeroClipboard.* javascripts/
+	curl -o javascripts/zc/ZeroClipboard_$(VERSION).js https://raw.github.com/zeroclipboard/zeroclipboard/v$(VERSION)/ZeroClipboard.js
+	curl -o javascripts/zc/ZeroClipboard_$(VERSION).swf https://raw.github.com/zeroclipboard/zeroclipboard/v$(VERSION)/ZeroClipboard.swf
+	@echo "Downloaded v$(VERSION) of the ZeroClipboard JS and SWF files."
+	@echo "IMPORTANT: You must update the \"index.html\" file to enable selecting that version!"
 
 commit: update
 	git add .
@@ -19,6 +21,6 @@ commit: update
 	git push
 
 server: update
-	open "http://localhost:3000/" && node node_server.js
+	open "http://localhost:$(PORT)/" && node node_server.js
 
 .PHONY: all update commit server
