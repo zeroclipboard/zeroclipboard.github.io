@@ -1,5 +1,5 @@
-VERSION = "1.3.3"
-PORT = "3000"
+VERSION = 1.3.3
+PORT = 3000
 
 all: \
 	node_modules \
