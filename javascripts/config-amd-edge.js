@@ -13,7 +13,7 @@
 
     // paths are relative to the aforementioned `baseUrl`
     paths: {
-      "ZeroClipboard_lib": "//rawgithub.com/zeroclipboard/ZeroClipboard/master/ZeroClipboard",
+      "ZeroClipboard_lib": "//rawgithub.com/zeroclipboard/ZeroClipboard/1.x-master/ZeroClipboard",
       "jquery":            "vendor/jquery.min",
       "domReady":          "vendor/requirejs-plugins/domReady"
     }
@@ -42,7 +42,7 @@
       //  - "//localhost:3000/javascripts/ZeroClipboard.swf"
       //  - "//my.awesomecdn.com/javascripts/ZeroClipboard.swf"
       //  - "http://my.awesomecdn.com/javascripts/ZeroClipboard.swf"
-      moviePath: "//rawgithub.com/zeroclipboard/ZeroClipboard/master/ZeroClipboard.swf"
+      moviePath: "//rawgithub.com/zeroclipboard/ZeroClipboard/1.x-master/ZeroClipboard.swf"
 
     });
     

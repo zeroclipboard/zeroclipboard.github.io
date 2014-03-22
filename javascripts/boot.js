@@ -58,7 +58,7 @@
   // Boot-load the actual demo code
   var targetVersion = query.version.replace(/^v/, "");
   if (targetVersion) {
-    var loadingEdge = targetVersion === "git:master";
+    var loadingEdge = targetVersion === "git:1.x-master";
 
     switch (query.type) {
 
@@ -66,7 +66,7 @@
         // Create a script block to load the ZeroClipboard library
         var zcLibSrcUrl = !loadingEdge ?
           "javascripts/zc/ZeroClipboard_" + targetVersion + ".js" :
-          "//rawgithub.com/zeroclipboard/ZeroClipboard/master/ZeroClipboard.js";
+          "//rawgithub.com/zeroclipboard/ZeroClipboard/1.x-master/ZeroClipboard.js";
         addScript(zcLibSrcUrl);
 
         // Create a cross-domain configuration script block if loading "edge"
