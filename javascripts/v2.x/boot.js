@@ -50,31 +50,42 @@
 
   // Adjust the stable version's download link
   var stableVersion = defaultVersion;  // e.g. "v1.1.7"
-  $(".download > a")
-    .attr("href", "https://github.com/zeroclipboard/ZeroClipboard/archive/" + stableVersion + ".zip")
-    .text(stableVersion + " ZIP");
+  var $downloadLink = $(".download > a");
+  $downloadLink
+    .on("click", function(event){
+      if (this.getAttribute("disabled") !== undefined) {
+        event.preventDefault();
+      }
+    });
 
+  if (stableVersion !== "git:master") {
+    $downloadLink
+      .removeAttr("disabled")
+      .attr("href", "https://github.com/zeroclipboard/ZeroClipboard/archive/" + stableVersion + ".zip")
+      .text(stableVersion + " ZIP");
+  }
+  
 
   // Boot-load the actual demo code
   var targetVersion = query.version.replace(/^v/, "");
   if (targetVersion) {
-    var loadingEdge = targetVersion === "git:1.x-master";
+    var loadingEdge = targetVersion === "git:master";
 
     switch (query.type) {
 
       case "traditional": {
         // Create a script block to load the ZeroClipboard library
         var zcLibSrcUrl = !loadingEdge ?
-          "javascripts/zc/ZeroClipboard_" + targetVersion + ".js" :
-          "//rawgithub.com/zeroclipboard/ZeroClipboard/1.x-master/ZeroClipboard.js";
+          "javascripts/zc/v" + targetVersion + "/ZeroClipboard.js" :
+          "//rawgithub.com/zeroclipboard/ZeroClipboard/master/ZeroClipboard.js";
         addScript(zcLibSrcUrl);
 
         // Create a cross-domain configuration script block if loading "edge"
-        var zcConfigSrcUrl = "javascripts/config-traditional" + (loadingEdge ? "-edge" : "") + ".js";
+        var zcConfigSrcUrl = "javascripts/v2.x/config-traditional" + (loadingEdge ? "-edge" : "") + ".js";
         addScript(zcConfigSrcUrl);
 
         // Create a script block to hook up the demo
-        addScript("javascripts/demo-traditional.js");
+        addScript("javascripts/v2.x/demo-traditional.js");
 
         break;
       }
@@ -90,11 +101,11 @@
         }
 
         // Create a cross-domain configuration script block if loading "edge"
-        var zcConfigSrcUrl = "javascripts/config-amd" + (loadingEdge ? "-edge" : "") + ".js";
+        var zcConfigSrcUrl = "javascripts/v2.x/config-amd" + (loadingEdge ? "-edge" : "") + ".js";
         addScript(zcConfigSrcUrl);
 
         // Create a script block to hook up the demo
-        addScript("javascripts/demo-amd.js");
+        addScript("javascripts/v2.x/demo-amd.js");
 
         break;
       }

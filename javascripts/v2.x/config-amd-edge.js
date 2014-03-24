@@ -13,14 +13,11 @@
 
     // paths are relative to the aforementioned `baseUrl`
     paths: {
-      "ZeroClipboard_lib": "zc/ZeroClipboard_" + window._ZC_DEMO_TARGET_VERSION,
+      "ZeroClipboard_lib": "//rawgithub.com/zeroclipboard/ZeroClipboard/master/ZeroClipboard",
       "jquery":            "vendor/jquery.min",
       "domReady":          "vendor/requirejs-plugins/domReady"
     }
   });
-  
-  // Delete the shameful global variable
-  delete window._ZC_DEMO_TARGET_VERSION;
 
   // If jQuery was already loaded (which it should've been), add a fake AMD wrapper for it
   if (window.jQuery) {
@@ -32,20 +29,14 @@
   // Messy but strictly for demo purposes: wrap ZeroClipboard with another module
   define("ZeroClipboard", ["ZeroClipboard_lib"], function(ZeroClipboard) {
 
-    ZeroClipboard.setDefaults({
+    /*
+    ZeroClipboard.config({
 
-      // The path must be relative to the PAGE, NOT to the current AMD module!
-      // Or, it could be an absolute path on the domain, e.g.:
-      //  - "/javascripts/ZeroClipboard.swf"
-      // Or, it could be an absolute URL to anywhere, e.g.:
-      //  - "//" + window.location.host + "/javascripts/ZeroClipboard.swf"
-      //  - "//localhost:3000/javascripts/ZeroClipboard.swf"
-      //  - "//my.awesomecdn.com/javascripts/ZeroClipboard.swf"
-      //  - "http://my.awesomecdn.com/javascripts/ZeroClipboard.swf"
-      moviePath: "javascripts/zc/ZeroClipboard_" + ZeroClipboard.version + ".swf"
+      
 
     });
-    
+    */
+
     return ZeroClipboard;
   });
 

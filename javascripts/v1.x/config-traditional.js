@@ -9,6 +9,6 @@ ZeroClipboard.setDefaults({
   //  - "//localhost:3000/javascripts/ZeroClipboard.swf"
   //  - "//my.awesomecdn.com/javascripts/ZeroClipboard.swf"
   //  - "http://my.awesomecdn.com/javascripts/ZeroClipboard.swf"
-  moviePath: "javascripts/zc/ZeroClipboard_" + ZeroClipboard.version + ".swf"
+  moviePath: "javascripts/zc/v" + ZeroClipboard.version + "/ZeroClipboard.swf"
 
 });
