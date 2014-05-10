@@ -3,7 +3,7 @@
   "version": "2.0.0-beta.5",
   "private": true,
   "dependencies": {
-    "express": "latest",
+    "express": "3.4.8",
     "jade": "latest",
     "request": "latest"
   }
