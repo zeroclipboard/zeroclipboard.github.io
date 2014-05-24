@@ -1,6 +1,6 @@
 {
   "name": "zeroclipboard.org",
-  "version": "2.0.0-beta.7",
+  "version": "2.0.0-beta.8",
   "private": true,
   "dependencies": {
     "express": "3.4.8",
