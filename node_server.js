@@ -1,20 +1,15 @@
 var express = require('express')
   , routes = require('./routes')
+  , bodyParser = require('body-parser')
 
-var app = express()
+var app = express();
 
-app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(function(req, res, next) {
-    next()
-  });
-  app.use(app.router);
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded());
   app.use(express.static(__dirname + '/'));
-});
 
-app.get('/', routes.index);
+app.use('/', routes.index);
 
 app.listen(3000);
