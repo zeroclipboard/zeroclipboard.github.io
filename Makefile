@@ -2,12 +2,11 @@ VERSION = 1.3.3
 PORT = 3000
 
 all: \
-	node_modules \
-	update \
+	gem \
 	server \
 
-node_modules:
-	npm install
+gem:
+	bundle install
 
 update:
 	curl -o javascripts/zc/v$(VERSION)/ZeroClipboard.js https://raw.github.com/zeroclipboard/zeroclipboard/v$(VERSION)/ZeroClipboard.js
