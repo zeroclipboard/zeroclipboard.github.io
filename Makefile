@@ -1,9 +1,9 @@
-VERSION = 1.3.3
+VERSION = 2.1.6
 PORT = 3000
 
 all: \
 	gem \
-	server \
+	serve \
 
 gem:
 	bundle install
@@ -19,7 +19,12 @@ commit: update
 	git commit -a -m "Update demo files to latest changes."
 	git push
 
-server: update
-	open "http://localhost:$(PORT)/" && node node_server.js
+browse:
+	open "http://localhost:$(PORT)/"
 
-.PHONY: all update commit server
+server:
+	bundle exec jekyll serve --port $(PORT)
+
+serve: update browse server
+
+.PHONY: all gem update commit browse server serve
