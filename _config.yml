@@ -1,4 +1,4 @@
 markdown: rdiscount
-zeroclipboard_version: 2.1.6
+zeroclipboard_version: 2.2.0
 rdiscount:
   extensions: [smart]

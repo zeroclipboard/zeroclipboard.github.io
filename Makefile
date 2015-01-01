@@ -1,4 +1,4 @@
-VERSION = 2.1.6
+VERSION = 2.2.0
 PORT = 3000
 
 all: \
@@ -9,8 +9,8 @@ gem:
 	bundle install
 
 update:
-	curl -o javascripts/zc/v$(VERSION)/ZeroClipboard.js https://raw.github.com/zeroclipboard/zeroclipboard/v$(VERSION)/ZeroClipboard.js
-	curl -o javascripts/zc/v$(VERSION)/ZeroClipboard.swf https://raw.github.com/zeroclipboard/zeroclipboard/v$(VERSION)/ZeroClipboard.swf
+	curl -L -o javascripts/zc/v$(VERSION)/ZeroClipboard.js https://raw.github.com/zeroclipboard/zeroclipboard/v$(VERSION)/dist/ZeroClipboard.js
+	curl -L -o javascripts/zc/v$(VERSION)/ZeroClipboard.swf https://raw.github.com/zeroclipboard/zeroclipboard/v$(VERSION)/dist/ZeroClipboard.swf
 	@echo "Downloaded v$(VERSION) of the ZeroClipboard JS and SWF files."
 	@echo "IMPORTANT: You must update the \"index*.html\" file(s) to enable selecting new versions!"
 
