@@ -1,7 +1,7 @@
 // Configure the root ZeroClipboard object
 ZeroClipboard.setDefaults({
 
-  // Allow SWF-JS/JS-SWF interactions between this demo's hosted domain and the SWF's hosted domain (`http://zeroclipboard.org`)
+  // Allow SWF-JS/JS-SWF interactions between this demo's hosted domain and the SWF's hosted domain (`http://zeroclipboard.github.io`)
   trustedDomains: [window.location.host, "//" + window.location.host, window.location.protocol + "//" + window.location.host],
 
   // The path must be relative to the PAGE, NOT to the current AMD module!
